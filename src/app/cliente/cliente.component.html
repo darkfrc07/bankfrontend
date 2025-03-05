@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Clientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: #0766c5;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .logo {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .tabs button {
+            padding: 10px 15px;
+            border: none;
+            background: #0766c5;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .formulario input, .busqueda input {
+            display: block;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .formulario button, .busqueda button {
+            background: #0766c5;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f1f1;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .editar, .eliminar {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Gestión de Clientes</h1>
+  </div>
+  
+  <div class="container">
+    <div class="tabs">
+      <button (click)="cambiarSeccion('registro')">Registrar Cliente</button>
+      <button (click)="cambiarSeccion('busqueda')">Buscar Cliente</button>
+      <button (click)="cambiarSeccion('gestion')">Ver Todos</button>
+    </div>
+
+    <!-- Sección de registro -->
+    <div *ngIf="seccionActiva === 'registro'" class="formulario">
+      <h2>{{ editando ? 'Editar Cliente' : 'Registrar Cliente' }}</h2>
+  
+      <input type="text" placeholder="Nombre" [(ngModel)]="nuevoCliente.nombre" />
+      <input type="text" placeholder="Dirección" [(ngModel)]="nuevoCliente.direccion" />
+      <input type="text" placeholder="Teléfono" [(ngModel)]="nuevoCliente.telefono" />
+  
+      <button (click)="agregarCliente()">
+        {{ editando ? 'Actualizar Cliente' : 'Registrar Cliente' }}
+      </button>
+      <button *ngIf="editando" (click)="cancelarEdicion()">Cancelar</button>
+    </div>
+
+    <!-- Sección de búsqueda por ID -->
+    <div *ngIf="seccionActiva === 'busqueda'" class="busqueda">
+      <h2>Buscar Cliente</h2>
+      <input type="number" placeholder="Ingrese ID" [(ngModel)]="idBusqueda" />
+      <button (click)="buscarCliente()">Buscar</button>
+      <div *ngIf="clienteEncontrado">
+        <p><strong>Nombre:</strong> {{ clienteEncontrado.nombre }}</p>
+        <p><strong>Dirección:</strong> {{ clienteEncontrado.direccion }}</p>
+        <p><strong>Teléfono:</strong> {{ clienteEncontrado.telefono }}</p>
+      </div>
+    </div>
+
+    <!-- Sección de gestión de clientes -->
+    <div *ngIf="seccionActiva === 'gestion' && clientes.length > 0" class="lista-clientes">
+      <h2>Clientes Registrados</h2>
+      <ul>
+        <li *ngFor="let cliente of clientes">
+          {{ cliente.nombre }} - {{ cliente.direccion }} - {{ cliente.telefono }}
+          <button class="editar" (click)="editarCliente(cliente)">✏ Editar</button>
+          <button class="eliminar" (click)="eliminarCliente(cliente.id!)">🗑 Eliminar</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

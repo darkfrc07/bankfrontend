@@ -1,29 +1,11 @@
-<div class="header">
-  <img src="assets/logo.png" alt="Logo" class="logo" />
-  <h1>Gestión de Clientes</h1>
-</div>
-
-<div class="main-container">
-  <div class="left">
-    <img src="assets/cliente.png" alt="Cliente" />
-  </div>
-
-  <div class="right">
-    <h2>Registrar Cliente</h2>
-
-    <input type="text" placeholder="Nombre" [(ngModel)]="nuevoCliente.nombre" required />
-    <input type="text" placeholder="Dirección" [(ngModel)]="nuevoCliente.direccion" required />
-    <input type="text" placeholder="Teléfono" [(ngModel)]="nuevoCliente.telefono" required />
-
-    <button (click)="agregarCliente()">Registrar</button>
-
-    <h2>Clientes Registrados</h2>
-    <button (click)="cargarClientes()">Cargar Clientes</button>
-
-    <ul>
-      <li *ngFor="let cliente of clientes">
-        {{ cliente.nombre }} - {{ cliente.direccion }} - {{ cliente.telefono }}
-      </li>
-    </ul>
-  </div>
-</div>
+<header>
+  <img src="assets/colsubsidio-logo.png" alt="Colsubsidio">
+  <h1>Banco App</h1>
+  <p>{{ chuckNorrisQuote }}</p>
+</header>
+<nav>
+  <button routerLink="/clientes">Clientes</button>
+  <button routerLink="/cuentas">Cuentas</button>
+  <button routerLink="/movimientos">Movimientos</button>
+</nav>
+<router-outlet></router-outlet>

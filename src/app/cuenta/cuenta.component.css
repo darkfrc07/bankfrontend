@@ -1,0 +1,199 @@
+/* General */
+body {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+/* Encabezado */
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background-color: #0766c5;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.gestion-cuentas {
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Asegura que el texto también se centre */
+  padding: 5px;
+  width: 50%;
+  max-width: 500px;
+  margin: 50px auto; /* Esto lo centra horizontalmente */
+  justify-content: center;
+  height: auto;
+}
+
+/* Botones */
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.botones button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #0766c5;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.botones button:hover {
+  background-color: #0552a0;
+  transform: scale(1.05);
+}
+
+.botones button:active {
+  background-color: #043d7a;
+  transform: scale(0.98);
+}
+
+/* Formularios */
+.formulario, .lista-cuentas {
+  width: 90%;
+  max-width: 450px; /* Más compacto */
+  padding: 15px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Quitar las flechas en los inputs type="number" en Chrome, Safari, Edge y Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Quitar las flechas en Firefox */
+button, input {
+  -webkit-appearance: none; /* Para Safari y Chrome */
+  -moz-appearance: none; /* Para Firefox */
+  appearance: none; /* Estándar */
+}
+
+
+/* Botón dentro del formulario */
+.formulario button {
+  background: #0766c5;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.formulario button:hover {
+  background-color: #0552a0;
+}
+
+/* Lista de cuentas */
+.lista-cuentas table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.lista-cuentas th, .lista-cuentas td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.lista-cuentas th {
+  background-color: #0766c5;
+  color: white;
+}
+
+.lista-cuentas {
+  font-family: "Arial", sans-serif; /* O usa la fuente que tienes */
+  font-size: 16px;
+  color: #333; /* Un color más oscuro para mejor legibilidad */
+  text-align: center;
+}
+
+/* Botones de acciones */
+.actualizar {
+  background-color: #ffc107;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.eliminar {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Mensajes */
+.mensaje {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.mensaje.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.mensaje.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Ajuste para centrar todo mejor */
+.container, .formulario, .lista-cuentas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}

@@ -1,0 +1,118 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: start;
+  padding: 5px;
+  width: 50%; /* Ajusta el ancho */
+  max-width: 500px; /* Límite de tamaño */
+  margin-top: 50px; /* Mueve el recuadro más arriba */
+  justify-content: flex-start;
+  height: auto;
+}
+
+.header {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  gap: 20px;
+}
+
+.logo {
+  height: 60px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0766c5;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.client-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.client-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-btn {
+  padding: 10px;
+  border: none;
+  background: #0766c5;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.lista-clientes {
+  max-height: 300px; /* Limita la altura para evitar que desborde la pantalla */
+  overflow-y: auto; /* Agrega desplazamiento vertical si hay muchos clientes */
+  width: 100%; /* Se ajusta al contenedor */
+}
+
+.lista-clientes ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-width: 100%;
+  overflow-x: auto; /* Evita desbordamiento horizontal */
+}
+
+.lista-clientes li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f1f1f1;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
+  word-break: break-word; /* Evita que el texto largo desborde */
+}
+
+.editar, .eliminar {
+  flex-shrink: 0; /* Evita que los botones se reduzcan demasiado */
+  padding: 5px 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center; /* Alinea el logo y el texto en la misma línea */
+  justify-content: center; /* Alinea los elementos a la izquierda */
+  padding: 10px 20px;
+}
+
+.header img {
+  width: 50px; /* Ajusta el tamaño del logo */
+  height: auto;
+  margin-right: 10px; /* Espacio entre el logo y el texto */
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: bold;
+}
+

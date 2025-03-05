@@ -1,0 +1,67 @@
+<div class="header">
+  <h2 class="titulo gestion-cuentas">Gestión de Cuentas</h2>
+</div>
+
+<div class="container">
+  <div class="contenido">
+    <div class="botones">
+      <button (click)="mostrarSeccion('registrar')">Registrar Cuenta</button>
+      <button (click)="mostrarSeccion('gestionar')">Gestionar Cuentas</button>
+    </div>
+
+    <div *ngIf="mensaje" [ngClass]="{'error': mensaje.includes('Error'), 'success': !mensaje.includes('Error')}" class="mensaje">
+      {{ mensaje }}
+    </div>
+
+    <!-- Formulario para registrar una cuenta -->
+    <div *ngIf="seccionActiva === 'registrar'" class="formulario">
+      <h3>Registrar Cuenta</h3>
+      <input type="text" placeholder="Número de Cuenta" [(ngModel)]="nuevaCuenta.numero">
+      <input type="number" placeholder="Saldo Inicial" [(ngModel)]="nuevaCuenta.saldo" min="0">
+      <input type="number" placeholder="ID del Cliente" [(ngModel)]="nuevaCuenta.idCliente" min="1">
+      <button (click)="agregarCuenta()">Agregar Cuenta</button>
+    </div>
+
+    <!-- Gestión de cuentas -->
+    <div *ngIf="['gestionar'].includes(seccionActiva)" class="lista-cuentas">
+      <h4>Buscar Cuenta</h4>
+
+      <!-- Buscar por Número de Cuenta -->
+      <div>
+        <input type="text" [(ngModel)]="numeroBusqueda" placeholder="Ingrese número de cuenta" />
+        <button (click)="buscarCuenta()">🔍 Buscar</button>
+      </div>
+
+      <div *ngIf="['editar'].includes(seccionActiva) && cuentaEnEdicion" class="formulario">
+        <h5>Editar Cuenta</h5>
+        <input type="text" [(ngModel)]="cuentaEnEdicion.numero" disabled> <!-- Número no editable -->
+        <input type="number" [(ngModel)]="cuentaEnEdicion.saldo" placeholder="Nuevo Saldo">
+        <input type="number" [(ngModel)]="cuentaEnEdicion.idCliente" placeholder="ID del Cliente">
+        <button (click)="actualizarCuenta()">Actualizar Cuenta</button>
+      </div>
+      
+
+      <!-- Tabla de cuentas encontradas -->
+      <table *ngIf="cuentasFiltradas.length > 0">
+        <thead>
+          <tr><th>Número</th><th>Saldo</th><th>Cliente ID</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cuenta of cuentasFiltradas">
+            <td>{{ cuenta.numero }}</td>
+            <td>{{ cuenta.saldo | currency }}</td>
+            <td>{{ cuenta.idCliente }}</td>
+            <td>
+              <a [routerLink]="['/editar-cuenta', cuenta.numero]" *ngIf="cuenta.numero">✏️</a>
+              <button (click)="eliminarCuenta(cuenta.numero)">🗑</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p *ngIf="cuentasFiltradas.length === 0 && filtroClienteId" style="color: red;">
+        No se encontraron cuentas para el ID ingresado.
+      </p>
+    </div>
+  </div>
+</div>

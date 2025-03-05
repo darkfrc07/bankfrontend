@@ -1,0 +1,91 @@
+<div class="contenedor">
+  <div class="titulo-container">
+    <h2>Movimientos Financieros</h2>
+  </div>
+
+  <div class="botones-seccion">
+    <button class="boton-azul" (click)="cambiarSeccion('registro')">Registrar Movimiento</button>
+    <button class="boton-azul" (click)="cambiarSeccion('gestion')">Gestionar Movimientos</button>
+  </div>  
+
+  <!-- Sección Registro de Movimientos -->
+  <div *ngIf="mostrarSeccion === 'registro'">
+    <h3>Agregar Movimiento</h3>
+    <form (ngSubmit)="agregarMovimiento()" class="form-grid">
+      
+      <div class="form-group">
+        <label for="numeroCuenta">Número de cuenta:</label>
+        <input id="numeroCuenta" type="text" [(ngModel)]="nuevoMovimiento.numeroCuenta" name="numeroCuenta" class="input-largo" required>
+      </div>
+
+      <div class="form-group">
+        <label>Seleccionar tipo:</label>
+        <div class="tipo-container">
+          <button type="button" class="btn-tipo" (click)="abrirPopup('debito')">Débito</button>
+          <button type="button" class="btn-tipo" (click)="abrirPopup('credito')">Crédito</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="valor">Monto:</label>
+        <input id="valor" type="text" [(ngModel)]="nuevoMovimiento.valor" name="monto" class="input-largo" pattern="[0-9]*" inputmode="numeric">
+      </div>
+
+      <button type="submit" class="btn-guardar">Guardar Movimiento</button>
+      <p *ngIf="mensajeGuardado" class="mensaje-guardado">Movimiento guardado correctamente</p>
+    </form>
+  </div>
+
+  
+
+  <!-- Popup de Tipo Débito/Crédito -->
+  <div *ngIf="mostrarPopup" class="popup">
+    <div class="popup-contenido">
+      <h3>{{ tipoSeleccionado === 'debito' ? 'Registrar Débito' : 'Registrar Crédito' }}</h3>
+      <p>Seleccione un monto o ingréselo manualmente.</p>
+      
+      <!-- Opciones de Monto -->
+      <div class="montos-container">
+        <button class = "verde" (click)="seleccionarMonto(20000)">$20.000</button>
+        <button class = "verde"(click)="seleccionarMonto(50000)">$50.000</button>
+        <button class = "verde"(click)="seleccionarMonto(100000)">$100.000</button>
+        <button class = "verde"(click)="seleccionarMonto(200000)">$200.000</button>
+        <button class = "verde"(click)="seleccionarMonto(500000)">$500.000</button>
+      </div>
+
+      <button class="rojo" (click)="cerrarPopup()">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Sección Gestión de Movimientos -->
+<div *ngIf="mostrarSeccion === 'gestion'">
+  <h3>Buscar Movimientos</h3>
+  
+  <div class="buscar-container">
+    <input type="number" [(ngModel)]="numeroCuentaBusqueda" placeholder="Número de cuenta">
+    <button class="boton-buscar" (click)="buscarMovimientos()">Buscar</button>
+  </div>
+
+  <p class="mensaje">{{ mensaje }}</p>
+
+  <div *ngIf="movimientos.length > 0">
+    <h3>Lista de Movimientos</h3>
+    <table class="tabla-movimientos"> <!-- Agregué la clase aquí -->
+      <thead>
+        <tr>
+          <th>Número de Cuenta</th>
+          <th>Tipo</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movimiento of movimientos">
+          <td>{{ movimiento.numeroCuenta }}</td>
+          <td>{{ movimiento.tipo }}</td>
+          <td>{{ movimiento.valor | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>Saldo actual: <span class="saldo">{{ saldo | currency }}</span></h4>
+  </div>
+</div>
